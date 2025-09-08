@@ -1,0 +1,27 @@
+.register-card {
+    max-width: 500px;
+    border-radius: 1rem;
+}
+
+.register-card .form-label i {
+    margin-right: 8px;
+    color: #0d6efd;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.2rem;
+    height: auto;
+}
+
+.btn-black {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+.btn-black:hover {
+    background-color: #333;
+    border-color: #333;
+}

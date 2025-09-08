@@ -1,0 +1,15 @@
+.cart-item img {
+    border: 1px solid #eee;
+}
+
+.cart-actions button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 14px;
+}
+
+.empty-cart {
+    font-style: italic;
+    color: #777;
+}

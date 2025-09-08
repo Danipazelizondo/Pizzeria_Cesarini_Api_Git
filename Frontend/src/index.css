@@ -1,0 +1,41 @@
+/* Fonts */
+.hind-madurai-light {
+    font-family: "Hind Madurai", sans-serif;
+    font-weight: 300;
+}
+
+.hind-madurai-regular {
+    font-family: "Hind Madurai", sans-serif;
+    font-weight: 400;
+}
+
+.hind-madurai-medium {
+    font-family: "Hind Madurai", sans-serif;
+    font-weight: 500;
+}
+
+.hind-madurai-semibold {
+    font-family: "Hind Madurai", sans-serif;
+    font-weight: 600;
+}
+
+.hind-madurai-bold {
+    font-family: "Hind Madurai", sans-serif;
+    font-weight: 700;
+}
+
+/* Layout global */
+    html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
