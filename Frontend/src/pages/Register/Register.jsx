@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Register.css';
-import FormInput from '../FormInput';
+import FormInput from '../../components/FormInput';
 import PasswordStrength from './PasswordStrength';
 
 const Register = () => {

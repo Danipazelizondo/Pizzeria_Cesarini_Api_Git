@@ -35,7 +35,7 @@ const Pizza =()=> {
 
     return (
         <>
-            <div className="home-container">
+            <div className="container">
                 {fetching && <h3>Cargando pizza...</h3>}
                 {error && <p style={{ color: "red" }}>{error}</p>}
 

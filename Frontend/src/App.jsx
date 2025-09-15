@@ -1,26 +1,33 @@
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import Pizza from "./components/Pizza";
-// import Register from './components/Register/Register';
-// import Login from './components/Login/Login';
-// import Cart from './components/Cart/Cart';
-import Footer from "./components/Footer/Footer";
+import Footer from './components/Footer/Footer';
+import Profile from './components/Profile/Profile';
+import NotFound from './components/NotFound/NotFound';
 
+import Home from './pages/Home/Home';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
+import Cart from './pages/Cart/Cart';
+import Pizza from './pages/Pizza';
 
 
 const App =()=> {
   
   return (
-    <>
-        <Navbar />
-        <Home />
-        <Pizza />
-        {/* <Register /> */}
-        {/* <Login /> */}
-        {/* <Cart /> */}
-        <Footer />
-    </>
+    <BrowserRouter>
+      <Navbar />
+      <Routes className="app-content">
+        <Route path="/" element={<Home />}/>
+        <Route path="/Register" element={<Register />}/>
+        <Route path="/Login" element={<Login />}/>
+        <Route path="/Cart" element={<Cart />}/>
+        <Route path="/Pizza/p001" element={<Pizza />}/>
+        <Route path="/Profile" element={<Profile />}/>
+        <Route path="/404" element={<NotFound />}/>
+      </Routes>
+      <Footer />
+      </BrowserRouter>
   );
 }
 

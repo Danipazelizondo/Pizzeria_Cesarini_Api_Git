@@ -41,6 +41,7 @@ const Home =()=> {
                         
                 {!fetching && !error && (
                     <div className="row">
+                        <h1 className="h3 fw-bold text-dark">Nuestras Pizzas</h1>
                         {pizzas.map((pizza) => (
                             <div className="col-md-4 mb-4" key={pizza.id}>
                                 <PizzaApi pizza={pizza} /> 
