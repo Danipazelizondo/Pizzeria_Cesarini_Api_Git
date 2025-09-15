@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import FormInput from '../FormInput';
+import FormInput from '../../components/FormInput';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -79,7 +79,7 @@ const Login = () => {
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
     return (
-        <div className="container mt-5">
+        <div className="container">
 
             <div className="text-center mb-4">
                 <h2 className="h3 fw-bold text-dark">Iniciar Sesión</h2>

@@ -35,7 +35,7 @@ const Home =()=> {
 
     return (
         <>
-            <div className="home-container container">
+            <div className="container">
                 {fetching && <h3>Cargando pizzas...</h3>}
                 {error && <p style={{ color: "red" }}>{error}</p>}
                         

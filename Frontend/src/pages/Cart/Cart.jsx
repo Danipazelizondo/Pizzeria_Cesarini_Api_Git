@@ -30,7 +30,7 @@ const Cart = () => {
     );
 
     return (
-        <div className="mt-5 p-2">
+        <div className="container">
             
             <div className="mb-4">
                 <h1 className="h3 fw-bold text-dark">🛒 Detalles del pedido</h1>

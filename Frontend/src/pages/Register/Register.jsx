@@ -96,7 +96,7 @@ const Register = () => {
 	};
 
 	return (
-	    <div className="container mt-5">
+	    <div className="container">
 			
 			<div className="text-center mb-4">
 				<h2 className="h3 fw-bold text-dark">Crear cuenta</h2>
