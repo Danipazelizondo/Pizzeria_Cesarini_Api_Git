@@ -2,6 +2,8 @@ import React from 'react';
 import './navbar.css';
 import { formatoPrecio } from "../../utils/formatoPrecio";
 import logo from '../../assets/img/logoCesarini.jpeg';
+import {Link} from 'react-router-dom';
+
 
 
 
@@ -28,11 +30,11 @@ const token = false;
 				</button>
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav nav-list ms-auto mb-1 mb-lg-0">
-							<li className="nav-item">
-								<a className="nav-link" href="#Home">
+						<li className="nav-item">
+							<a className="nav-link" href="/">
 								🏠Home
-								</a>
-							</li>
+							</a>
+						</li>
 
 							{token ? (
 							<>
@@ -51,12 +53,12 @@ const token = false;
 							) : (								
 							<>
 								<li className="nav-item">
-									<a className="nav-link" href="#Login">
+									<a className="nav-link" href="/Login">
 										🔐Login
 									</a>
 								</li>
 								<li className="nav-item">
-									<a className="nav-link" href="#Register">
+									<a className="nav-link" href='/Register'>
 										🔐Register
 									</a>
 								</li>
@@ -64,7 +66,7 @@ const token = false;
 							)}							
 							
 							<li className="nav-item">
-								<a className="nav-link" href="#Total">
+								<a className="nav-link" href='/Cart'>
 								🛒 Total: {formatoPrecio(total)}
 								</a>
 							</li>
