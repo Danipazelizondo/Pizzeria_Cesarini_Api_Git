@@ -2,6 +2,7 @@ import React from 'react';
 import {usePizzas} from "../../context/PizzaContext"
 import './Home.css';
 import PizzaApi from "./components_home/PizzaApi"
+import { Link } from "react-router-dom";
 // import CardPizza from "./components_home/CardPizza";
 // import {pizzasData} from './Pizzas2';
 

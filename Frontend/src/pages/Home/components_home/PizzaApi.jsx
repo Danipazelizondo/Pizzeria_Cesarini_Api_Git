@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './CardPizza.css';
 import { formatoPrecio } from "../../../utils/formatoPrecio";
 import { CartContext } from "../../../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const PizzaApi =({ pizza })=> {
     const { addToCart } = useContext(CartContext);
@@ -12,11 +12,13 @@ const PizzaApi =({ pizza })=> {
         <>
             <div>
                 <div className="pizza-card card h-100 shadow-sm">
-                    <img src={pizza.img} className="card-img-top" alt={pizza.name} />
-                    
+                    <Link to={`/pizza/${pizza.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <img src={pizza.img} className="card-img-top" alt={pizza.name} />
+                        <div className="card-body text-center">
+                            <h5 className="card-title fw-bold mb-3">{pizza.name}</h5>
+                        </div>
+                    </Link>
                     <div className="card-body text-center d-flex flex-column justify-content-between">
-                        <h5 className="card-title fw-bold mb-3">{pizza.name}</h5>
-                        
                         <hr />
                         
                         <div className="pizza-ingredients">
