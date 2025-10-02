@@ -3,12 +3,13 @@ import './navbar.css';
 import { formatoPrecio } from "../../utils/formatoPrecio";
 import logo from '../../assets/img/logoCesarini.jpeg';
 import {Link} from 'react-router-dom';
-
+import { useCart } from "../../context/CartContext";
 
 
 
 const Navbar = () => {
-const total = 25000;
+const { cart, total } = useCart();
+const totalProductos = cart.reduce((acc, item) => acc + item.count, 0);
 const token = false;
 	
 	return (
@@ -66,8 +67,8 @@ const token = false;
 							)}							
 							
 							<li className="nav-item">
-								<Link className="nav-link" to='/Cart'>
-								🛒 Total: {formatoPrecio(total)}
+								<Link className="nav-link position-relative" to='/Cart'>
+								🛒 {totalProductos} {totalProductos === 1 ? "producto" : "productos"} - {formatoPrecio(total)}
 								</Link>
 							</li>
 					</ul>
