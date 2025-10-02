@@ -8,20 +8,33 @@ export const CartProvider = ({ children }) => {
 
     const incrementaCantidad = (id) => {
         setCart((prevCart) =>
-        prevCart.map((item) =>
-            item.id === id ? { ...item, count: item.count + 1 } : item
-        )
+            prevCart.map((item) =>
+                item.id === id ? { ...item, count: item.count + 1 } : item
+            )
         );
     };
 
     const decreceCantidad = (id) => {
         setCart((prevCart) =>
-        prevCart
-            .map((item) =>
-            item.id === id ? { ...item, count: item.count - 1 } : item
-            )
-            .filter((item) => item.count > 0)
+            prevCart
+                .map((item) =>
+                    item.id === id ? { ...item, count: item.count - 1 } : item
+                )
+                .filter((item) => item.count > 0)
         );
+    };
+
+    const addToCart = (pizza) => {
+        setCart((prevCart) => {
+            const existe = prevCart.find((item) => item.id === pizza.id);
+            if (existe) {
+                return prevCart.map((item) =>
+                    item.id === pizza.id ? { ...item, count: item.count + 1 } : item
+                );
+            } else {
+                return [...prevCart, { ...pizza, count: 1 }];
+            }
+        });
     };
 
     const total = cart.reduce(
@@ -36,6 +49,7 @@ export const CartProvider = ({ children }) => {
             setCart,
             incrementaCantidad,
             decreceCantidad,
+            addToCart,
             total,
         }}
     >
