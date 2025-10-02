@@ -1,33 +1,10 @@
-import React, { useState } from "react";
-import {pizzaCart} from '../Home/Pizzas2';
+import React from "react";
+import { useCart} from '../../context/CartContext';
 import { formatoPrecio } from "../../utils/formatoPrecio";
 import "./Cart.css";
 
 const Cart = () => {
-    const [cart, setCart] = useState(pizzaCart);
-
-    const incrementaCantidad = (id) => {
-        setCart(
-            cart.map((item) =>
-                item.id === id ? { ...item, count: item.count + 1 } : item
-            )
-        );
-    };
-
-    const decreceCantidad = (id) => {
-        setCart(
-        cart
-            .map((item) =>
-            item.id === id ? { ...item, count: item.count - 1 } : item
-            )
-            .filter((item) => item.count > 0)
-        );
-    };
-
-    const total = cart.reduce(
-        (acc, item) => acc + Number(item.price) * Number(item.count),
-        0
-    );
+    const { cart, incrementaCantidad, decreceCantidad, total } = useCart();
 
     return (
         <div className="container">
