@@ -14,9 +14,9 @@ const token = false;
 	return (
 		<nav className="navbar navbar-expand-lg fixed-top navbar-dark" style={{ backgroundColor: "#000000ff" }}>
 			<div className="container-fluid">
-				<a href="#">
+				<Link to="/">
 					<img src={logo} alt="Logo" style={{ width: "50px"}}/>
-				</a>
+				</Link>
 				<button
 						className="navbar-toggler"
 						type="button"
@@ -31,44 +31,44 @@ const token = false;
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav nav-list ms-auto mb-1 mb-lg-0">
 						<li className="nav-item">
-							<a className="nav-link" href="/">
+							<Link className="nav-link" to="/">
 								🏠Home
-							</a>
+							</Link>
 						</li>
 
 							{token ? (
 							<>
 								<li className="nav-item">
-									<a className="nav-link" href="#Profile">
+									<Link className="nav-link" to="#Profile">
 										🔓Profile
-									</a>
+									</Link>
 								</li>
 								<li className="nav-item">
-									<a className="nav-link" href="#Logout">
+									<Link className="nav-link" to="#Logout">
 										🔒Logout
-									</a>
+									</Link>
 								</li>
 							</>
 
 							) : (								
 							<>
 								<li className="nav-item">
-									<a className="nav-link" href="/Login">
+									<Link className="nav-link" to="/Login">
 										🔐Login
-									</a>
+									</Link>
 								</li>
 								<li className="nav-item">
-									<a className="nav-link" href='/Register'>
+									<Link className="nav-link" to='/Register'>
 										🔐Register
-									</a>
+									</Link>
 								</li>
 							</>							
 							)}							
 							
 							<li className="nav-item">
-								<a className="nav-link" href='/Cart'>
+								<Link className="nav-link" to='/Cart'>
 								🛒 Total: {formatoPrecio(total)}
-								</a>
+								</Link>
 							</li>
 					</ul>
 				</div>
