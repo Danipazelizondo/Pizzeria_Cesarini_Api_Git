@@ -4,7 +4,7 @@ import { pizzaCart } from "../pages/Home/Pizzas2";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState(pizzaCart);
+    const [cart, setCart] = useState([]);
 
     const incrementaCantidad = (id) => {
         setCart((prevCart) =>

@@ -1,22 +1,30 @@
 import React from "react";
 import { useCart} from '../../context/CartContext';
 import { formatoPrecio } from "../../utils/formatoPrecio";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
     const { cart, incrementaCantidad, decreceCantidad, total } = useCart();
+    const navigate = useNavigate();
 
     return (
-        <div className="container">
-            
+        <div className="container" style={{ paddingTop: "80px" }}>
             <div className="mb-4">
                 <h1 className="h3 fw-bold text-dark">🛒 Detalles del pedido</h1>
-                <p className="text-muted">Agrega tus pizzas favoritas</p>
             </div>
             
             <div className="mx-auto mb-3" style={{ maxWidth: '500px' }}>
                 {cart.length === 0 ? (
-                    <p className="empty-cart">Tu carrito está vacío</p>
+                    <div className="text-center py-5">
+                        <p className="empty-cart fw-semibold mb-2" style={{ fontSize: "1.1rem" }}>
+                            Tu carrito está vacío
+                        </p>
+                        <p className="text-muted mb-0">
+                            Agrega tus pizzas favoritas para comenzar 🍕
+                        </p>
+                        <p className="fw-bold mt-3">0 productos</p>
+                    </div>
                 ) : (
                     <div>
                         {cart.map((pizza) => (
@@ -31,10 +39,10 @@ const Cart = () => {
                                     />
                                     <div className="ms-3">
                                         <h6 className="mb-0 fw-semibold text-capitalize">
-                                        {pizza.name}
+                                            {pizza.name}
                                         </h6>
                                         <small className="text-muted">
-                                        {formatoPrecio(pizza.price)}
+                                            {formatoPrecio(pizza.price)}
                                         </small>
                                     </div>
                                 </div>
@@ -65,10 +73,8 @@ const Cart = () => {
                     </div>
                 )}
             </div>
-
         </div>
     );
 };
 
 export default Cart;
-
