@@ -24,7 +24,7 @@ const App =()=> {
         <Route path="/Cart" element={<Cart />}/>
         <Route path="/Pizza/p001" element={<Pizza />}/>
         <Route path="/Profile" element={<Profile />}/>
-        <Route path="/404" element={<NotFound />}/>
+        <Route path="*" element={<NotFound />}/>
       </Routes>
       <Footer />
       </BrowserRouter>
