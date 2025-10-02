@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { formatoPrecio } from "../utils/formatoPrecio"
 import './Home/components_home/CardPizza.css';
 import "./Home/Home.css"
+import { CartContext } from "../context/CartContext";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Pizza =()=> {
     const [pizza, setPizza] = useState (null);
     const [fetching, setFetching] = useState(false);
     const [error, setError] = useState (null);
+
+    const { addToCart } = useContext(CartContext);
+    const navigate = useNavigate();
+    const { id } = useParams();
 
     const handleFetch = async (url) => {
         setFetching(true);
@@ -26,12 +32,8 @@ const Pizza =()=> {
     };
 
     useEffect(() => {
-        handleFetch('http://localhost:5000/api/pizzas/p001');
-    }, []);
-
-    useEffect(() => {
-        console.log("Pizza cargada:", pizza);
-    }, [pizza]);
+        handleFetch(`http://localhost:5000/api/pizzas/${id}`);
+    }, [id]);
 
     return (
         <>
@@ -64,8 +66,18 @@ const Pizza =()=> {
                                 <p className="pizza-price">Precio: {formatoPrecio(pizza.price)}</p>
 
                                 <div className="d-flex justify-content-center gap-2 mt-3">
-                                    <button className="btn btn-outline-secondary btn-sm">Volver</button>
-                                    <button className="btn btn-dark btn-sm">Añadir 🛒</button>
+                                    <button 
+                                        className="btn btn-outline-secondary btn-sm"
+                                        onClick={() => navigate("/")}
+                                    >
+                                        Volver
+                                    </button>
+                                    <button 
+                                        className="btn btn-dark btn-sm"
+                                        onClick={() => addToCart(pizza)}
+                                    >
+                                        Añadir 🛒
+                                    </button>
                                 </div>
                             </div>
                         </div>

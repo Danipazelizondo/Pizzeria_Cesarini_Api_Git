@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import './CardPizza.css';
 import { formatoPrecio } from "../../../utils/formatoPrecio";
+import { CartContext } from "../../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const PizzaApi =({ pizza })=> {
+    const { addToCart } = useContext(CartContext);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -29,8 +33,19 @@ const PizzaApi =({ pizza })=> {
                         <p className="pizza-price"> Precio: {formatoPrecio(pizza.price)}</p>
 
                         <div className="d-flex justify-content-center gap-2 mt-3">
-                            <button className="btn btn-outline-secondary btn-sm">Ver Más 👀</button>
-                            <button className="btn btn-dark btn-sm">Añadir 🛒</button>
+                            <button 
+                            className="btn btn-outline-secondary btn-sm"
+                            onClick={() => navigate(`/pizza/${pizza.id}`)}
+                            >
+                                Ver Más 👀
+                            </button>
+
+                            <button 
+                            className="btn btn-dark btn-sm"
+                            onClick={() => addToCart(pizza)}
+                            >
+                                Añadir 🛒
+                            </button>
                         </div>
                     </div>
                 </div>

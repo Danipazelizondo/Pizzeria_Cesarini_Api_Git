@@ -25,7 +25,7 @@ const App =()=> {
           <Route path="/Register" element={<Register />}/>
           <Route path="/Login" element={<Login />}/>
           <Route path="/Cart" element={<Cart />}/>
-          <Route path="/Pizza/p001" element={<Pizza />}/>
+          <Route path="/Pizza/:id" element={<Pizza />}/>
           <Route path="/Profile" element={<Profile />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
