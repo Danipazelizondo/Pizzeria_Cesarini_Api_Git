@@ -34,15 +34,15 @@ const PizzaApi =({ pizza })=> {
 
                         <div className="d-flex justify-content-center gap-2 mt-3">
                             <button 
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={() => navigate(`/pizza/${pizza.id}`)}
+                                className="btn btn-outline-secondary btn-sm"
+                                onClick={() => navigate(`/pizza/${pizza.id}`)}
                             >
                                 Ver Más 👀
                             </button>
 
                             <button 
-                            className="btn btn-dark btn-sm"
-                            onClick={() => addToCart(pizza)}
+                                className="btn btn-dark btn-sm"
+                                onClick={() => addToCart(pizza)}
                             >
                                 Añadir 🛒
                             </button>

@@ -12,26 +12,28 @@ import Cart from './pages/Cart/Cart';
 import Pizza from './pages/Pizza';
 
 import { CartProvider } from "./context/CartContext";
-
+import { PizzaProvider } from "./context/PizzaContext";
 
 const App =()=> {
   
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routes className="app-content">
-          <Route path="/" element={<Home />}/>
-          <Route path="/Register" element={<Register />}/>
-          <Route path="/Login" element={<Login />}/>
-          <Route path="/Cart" element={<Cart />}/>
-          <Route path="/Pizza/:id" element={<Pizza />}/>
-          <Route path="/Profile" element={<Profile />}/>
-          <Route path="*" element={<NotFound />}/>
-        </Routes>
-        <Footer />
+    <PizzaProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes className="app-content">
+            <Route path="/" element={<Home />}/>
+            <Route path="/Register" element={<Register />}/>
+            <Route path="/Login" element={<Login />}/>
+            <Route path="/Cart" element={<Cart />}/>
+            <Route path="/Pizza/:id" element={<Pizza />}/>
+            <Route path="/Profile" element={<Profile />}/>
+            <Route path="*" element={<NotFound />}/>
+          </Routes>
+          <Footer />
         </BrowserRouter>
       </CartProvider>
+    </PizzaProvider>
   );
 }
 
