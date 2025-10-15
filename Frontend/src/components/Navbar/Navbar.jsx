@@ -2,16 +2,17 @@ import React from 'react';
 import './navbar.css';
 import { formatoPrecio } from "../../utils/formatoPrecio";
 import logo from '../../assets/img/logoCesarini.jpeg';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import { useCart } from "../../context/CartContext";
-
+import { useUser } from "../../context/UserContext";
 
 
 const Navbar = () => {
 const { cart, total } = useCart();
 const totalProductos = cart.reduce((acc, item) => acc + item.count, 0);
-const token = false;
-	
+const { token, logout } = useUser();
+const validateRoot = ({ isActive }) => isActive ? 'nav-link active' : 'nav-link';
+
 	return (
 		<nav className="navbar navbar-expand-lg fixed-top navbar-dark" style={{ backgroundColor: "#000000ff" }}>
 			<div className="container-fluid">
@@ -19,58 +20,50 @@ const token = false;
 					<img src={logo} alt="Logo" style={{ width: "50px"}}/>
 				</Link>
 				<button
-						className="navbar-toggler"
-						type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#navbarSupportedContent"
-						aria-controls="navbarSupportedContent"
-						aria-expanded="false"
-						aria-label="Toggle navigation"
+					className="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
 				>
 					<span className="navbar-toggler-icon"></span>
 				</button>
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav nav-list ms-auto mb-1 mb-lg-0">
 						<li className="nav-item">
-							<Link className="nav-link" to="/">
-								🏠Home
-							</Link>
+							<NavLink to="/" className={validateRoot}>🏠Home</NavLink>
 						</li>
 
 							{token ? (
 							<>
 								<li className="nav-item">
-									<Link className="nav-link" to="#Profile">
-										🔓Profile
-									</Link>
+									<NavLink to="#Profile" className={validateRoot}>🔓Profile</NavLink>
 								</li>
 								<li className="nav-item">
-									<Link className="nav-link" to="#Logout">
+									<button className="nav-link btn btn-link text-decoration-none" onClick={logout}>
 										🔒Logout
-									</Link>
+									</button>
 								</li>
 							</>
 
 							) : (								
 							<>
 								<li className="nav-item">
-									<Link className="nav-link" to="/Login">
-										🔐Login
-									</Link>
+									<NavLink to="/Login" className={validateRoot}>🔐Login</NavLink>
 								</li>
 								<li className="nav-item">
-									<Link className="nav-link" to='/Register'>
-										🔐Register
-									</Link>
+									<NavLink to="/Register" className={validateRoot}>🔐Register</NavLink>
 								</li>
 							</>							
 							)}							
 							
-							<li className="nav-item">
-								<Link className="nav-link position-relative" to='/Cart'>
+						<li className="nav-item">
+							<Link to="/Cart" className="nav-link position-relative">
 								🛒 {totalProductos} {totalProductos === 1 ? "producto" : "productos"} - {formatoPrecio(total)}
-								</Link>
-							</li>
+							</Link>
+						</li>
 					</ul>
 				</div>
 			</div>

@@ -2,11 +2,13 @@ import React from "react";
 import { useCart} from '../../context/CartContext';
 import { formatoPrecio } from "../../utils/formatoPrecio";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 import "./Cart.css";
 
 const Cart = () => {
     const { cart, incrementaCantidad, decreceCantidad, total } = useCart();
     const navigate = useNavigate();
+    const { token } = useUser();
 
     return (
         <div className="container" style={{ paddingTop: "80px" }}>
@@ -69,7 +71,13 @@ const Cart = () => {
 
                         <h4>Total: {formatoPrecio(total)}</h4>
 
-                        <button className="btn btn-dark w-100 mt-3">Pagar</button>
+                        <button 
+                            className="btn btn-dark w-100 mt-3"
+                            disabled={!token}
+                            onClick={() => token && navigate("/checkout")}
+                        >
+                            {token ? "Pagar" : "Inicia sesión para pagar"}
+                        </button>
                     </div>
                 )}
             </div>

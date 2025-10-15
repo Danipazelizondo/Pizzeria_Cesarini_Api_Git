@@ -13,27 +13,58 @@ import Pizza from './pages/Pizza';
 
 import { CartProvider } from "./context/CartContext";
 import { PizzaProvider } from "./context/PizzaContext";
+import { UserProvider, useUser } from "./context/UserContext";
+
+const ProtectedRoute = ({ children }) => {
+  const { token } = useUser();
+  return token ? children : <Navigate to="/login" replace />;
+};
+
+const AppRoutes = () => {
+  const { token } = useUser();
+
+  return (
+    <Routes className="app-content">
+      <Route path="/" element={<Home />}/>
+      <Route 
+        path="/Register" 
+        element={token ? <Navigate to="/" replace /> : <Register />}
+      />
+      <Route 
+        path="/Login" 
+        element={token ? <Navigate to="/" replace /> : <Login />}
+      />
+      <Route path="/Cart" element={<Cart />}/>
+      <Route path="/Pizza/:id" element={<Pizza />}/>
+
+      <Route 
+        path="/Profile" 
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        } 
+      />
+
+      <Route path="*" element={<NotFound />}/>
+    </Routes>
+  );
+};
 
 const App =()=> {
   
   return (
-    <PizzaProvider>
-      <CartProvider>
-        <BrowserRouter>
-          <Navbar />
-          <Routes className="app-content">
-            <Route path="/" element={<Home />}/>
-            <Route path="/Register" element={<Register />}/>
-            <Route path="/Login" element={<Login />}/>
-            <Route path="/Cart" element={<Cart />}/>
-            <Route path="/Pizza/:id" element={<Pizza />}/>
-            <Route path="/Profile" element={<Profile />}/>
-            <Route path="*" element={<NotFound />}/>
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </CartProvider>
-    </PizzaProvider>
+    <UserProvider>
+      <PizzaProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <Navbar />
+            <AppRoutes />
+            <Footer />
+          </BrowserRouter>
+        </CartProvider>
+      </PizzaProvider>
+    </UserProvider>
   );
 }
 
