@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { pizzaCart } from "../pages/Home/Pizzas2";
 
 export const CartContext = createContext();
 
@@ -37,6 +36,8 @@ export const CartProvider = ({ children }) => {
         });
     };
 
+    const clearCart = () => setCart([]);
+
     const total = cart.reduce(
         (acc, item) => acc + Number(item.price) * Number(item.count),
         0
@@ -50,6 +51,7 @@ export const CartProvider = ({ children }) => {
             incrementaCantidad,
             decreceCantidad,
             addToCart,
+            clearCart,
             total,
         }}
     >
