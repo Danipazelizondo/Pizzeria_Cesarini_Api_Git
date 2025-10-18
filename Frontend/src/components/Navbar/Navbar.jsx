@@ -39,7 +39,7 @@ const validateRoot = ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'
 							{token ? (
 							<>
 								<li className="nav-item">
-									<NavLink to="#Profile" className={validateRoot}>🔓Profile</NavLink>
+									<NavLink to="/Profile" className={validateRoot}>🔓Profile</NavLink>
 								</li>
 								<li className="nav-item">
 									<button className="nav-link btn btn-link text-decoration-none" onClick={logout}>

@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Profile from './components/Profile/Profile';
+import Checkout from './pages/Checkout/Checkout';
 import NotFound from './components/NotFound/NotFound';
 
 import Home from './pages/Home/Home';
@@ -42,6 +43,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        } 
+      />
+
+            <Route 
+        path="/Checkout" 
+        element={
+          <ProtectedRoute>
+            <Checkout />
           </ProtectedRoute>
         } 
       />

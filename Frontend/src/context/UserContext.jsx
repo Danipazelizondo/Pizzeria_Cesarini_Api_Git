@@ -6,38 +6,43 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token") || null);
     const [email, setEmail] = useState(localStorage.getItem("email") || null);
+    const [name, setName] = useState(localStorage.getItem("name") || null);
     const [loading, setLoading] = useState(false);
 
     const saveAuth = ({ token, email }) => {
         setToken(token);
         setEmail(email);
+        setName(name);
         localStorage.setItem("token", token);
         localStorage.setItem("email", email);
+        if (name) localStorage.setItem("name", name);
     };
 
     const clearAuth = () => {
         setToken(null);
         setEmail(null);
+        setName(null);
         localStorage.removeItem("token");
         localStorage.removeItem("email");
+        localStorage.removeItem("name");
     };
 
     const login = async ({ email, password }) => {
         setLoading(true);
         try {
             const { data } = await api.post("/api/auth/login", { email, password });
-            saveAuth({ token: data.token, email: data.email });
+            saveAuth({ token: data.token, email: data.email, name: data.name });
             return data;
         } finally {
             setLoading(false);
         }
     };
 
-    const register = async ({ email, password }) => {
+    const register = async ({ email, password, name }) => {
         setLoading(true);
         try {
             const { data } = await api.post("/api/auth/register", { email, password });
-            saveAuth({ token: data.token, email: data.email });
+            saveAuth({ token: data.token, email: data.email, name: data.name });
             return data;
         } finally {
             setLoading(false);
@@ -59,7 +64,7 @@ export const UserProvider = ({ children }) => {
 
     return (
         <UserContext.Provider
-            value={{ token, email, loading, login, register, logout, fetchProfile }}
+            value={{ token, email, name, loading, login, register, logout, fetchProfile }}
             >
             {children}
         </UserContext.Provider>

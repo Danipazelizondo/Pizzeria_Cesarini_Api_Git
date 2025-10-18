@@ -72,7 +72,6 @@ const register = async (req, res) => {
 
     return res.json({ email, token });
   } catch (error) {
-    // console.log(error);
     return res.status(500).json({ error: "Server error" });
   }
 };
@@ -81,13 +80,13 @@ const me = async (req, res) => {
   try {
     const { email } = req.user;
     const user = await authModel.getUserByEmail(email);
-    return res.json({ email, id: user.id });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    return res.json({ email: user.email, id: user.id, name: user.name ?? null });
   } catch (error) {
-    // console.log(error);
     return res.status(500).json({ error: "Server error" });
   }
 };
-
 export const authController = {
   login,
   register,
